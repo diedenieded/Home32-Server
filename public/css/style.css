@@ -32,3 +32,17 @@
     background-color:#FFF3CD;
     color: #856404;
 }
+
+.list {
+    list-style-type: none;
+    border: 1px solid black;
+    padding: 10px;
+    line-height: 40px;
+    font-size: 1.4em;
+    border-radius: 5px;
+}
+
+
+.device-info {
+    margin: 0;
+}

@@ -4,7 +4,21 @@ const router = express.Router();
 let Device = require('../models/device');
 
 router.get('/', (req, res) => {
-    res.render('devices');
+    Device.find({}, (err, devices) => {
+        if (err) {
+            console.log(err);
+            return;
+        } else if (devices.length == 0) {
+            req.flash('warning', 'There are no devices!');
+            res.render('devices', {
+                devices: {}
+            });
+        } else {
+            res.render('devices', {
+                devices: devices
+            });
+        }
+    });
 });
 
 router.get('/add', (req, res) => {
