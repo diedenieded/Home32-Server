@@ -1,0 +1,27 @@
+doctype html
+html
+    head
+        title Home32
+        link(rel="stylesheet", href="/css/wing.min.css")
+        link(rel="stylesheet", href="/css/style.css")
+
+    body
+        .container
+            nav.nav
+                h5.nav-logo Home32
+                a.nav-item(href='/home') Home
+                a.nav-item(href='/devices') Devices
+                a.nav-item Login
+            != messages('message', locals)
+            if errors
+                .alert.alert-danger
+                    each error, i in errors 
+                        b=error.msg
+                        br
+            block content
+            br
+            hr
+            footer
+                p Home32 by diedenieded
+            script(src="/js/jquery.js")
+            script(src="/js/main.js")
