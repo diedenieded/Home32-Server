@@ -1,8 +1,10 @@
 const express = require('express');
+const mongoose = require('mongoose');
 const router = express.Router();
 
 let Device = require('../models/device');
 
+// GET route to show devices page
 router.get('/', (req, res) => {
     Device.find({}, (err, devices) => {
         if (err) {
@@ -21,6 +23,7 @@ router.get('/', (req, res) => {
     });
 });
 
+// GET route to show add device page
 router.get('/add', (req, res) => {
     res.render('add_device');
 });
@@ -59,4 +62,47 @@ router.post('/add', (req, res) => {
     }
 });
 
+// GET route to show configure device page
+router.get('/:id/configure', (req, res) => {
+    Device.findById(req.params.id, (err, device) => {
+        res.render('configure_device', {
+            device: device
+        });
+    });
+});
+
+// POST route to submit configuration changes
+router.post('/:id/configure', (req, res) => {
+    let device = {};
+    device.name = req.body.name;
+    device.deviceType = req.body.device_type;
+    device.roomName = req.body.room_name;
+    device.floor = req.body.floor;
+    device.mqttTopic = req.body.mqtt_topic;
+    let query = {_id:mongoose.Types.ObjectId(req.params.id)}
+    Device.updateOne(query, device, (err) => {
+        if (err) {
+            console.log(err);
+            return;
+        } else {
+            req.flash('success', 'Changes have been saved');
+            res.redirect('/devices');
+        }
+    });
+});
+
+// GET route to delete entry, will redirect to /devices
+router.get('/:id/delete', (req, res) => {
+    let query = {_id:req.params.id};
+    Device.findById(req.params.id, (err, device) => {
+        Device.deleteOne(query, (err) => {
+            if (err) {
+                console.log(err);
+            } else {
+                req.flash('success', 'Device has been deleted');
+                res.redirect('/devices');
+            }
+        });
+    });
+});
 module.exports = router;

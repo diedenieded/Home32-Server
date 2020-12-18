@@ -42,6 +42,12 @@
     border-radius: 5px;
 }
 
+.delete{
+    border: 1px solid red;
+    background-color: #db4551;
+    color: white;
+    font-weight: bold;
+}
 
 .device-info {
     margin: 0;

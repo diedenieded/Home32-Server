@@ -3,7 +3,11 @@ $(() => {
         location.href = '/devices/add';
     });
 
-    $('.configure').on('click', ()=> {
-        location.href = '/devices/' + $('.configure').attr('id');
+    $('.configure').on('click', (target) => {
+        location.href = '/devices/' + target.currentTarget.id + '/configure/';
+    });
+
+    $('.delete').on('click', (target) => {
+        location.href = '/devices/' + target.currentTarget.id + '/delete/';
     });
 });
