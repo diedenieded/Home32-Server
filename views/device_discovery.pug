@@ -1,0 +1,13 @@
+extends layout
+
+block content
+    h2 Device discovery
+    #discovering
+        h5 Discovering devices...
+    #discovered
+        h5 Devices discovered
+        ul.list
+            
+        button#rediscover.outline Refresh
+    script(src="/js/socket.io.min.js")
+    script(src="/js/discovery.js")

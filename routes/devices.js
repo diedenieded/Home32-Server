@@ -25,7 +25,14 @@ router.get('/', (req, res) => {
 
 // GET route to show add device page
 router.get('/add', (req, res) => {
-    res.render('add_device');
+    if (Object.keys(req.query).length == 0) {
+        res.render('add_device');
+    } else {
+        res.render('autoadd_device', {
+            deviceType: req.query.devicetype,
+            deviceId: req.query.deviceid
+        });
+    }
 });
 
 // POST route to add a new device via form
@@ -105,4 +112,15 @@ router.get('/:id/delete', (req, res) => {
         });
     });
 });
+
+// Get route to show device discovery page
+router.get('/discovery', (req, res) => {
+    res.render('device_discovery');
+});
+
+// POST route to get device chosen and redirect to autoadd_deivce with prefilled information
+router.post('/discovery', (req, res) => {
+
+});
+
 module.exports = router;

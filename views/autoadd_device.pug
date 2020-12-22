@@ -1,0 +1,28 @@
+extends layout
+
+block content
+    h2 Add device
+    div
+        form(action="/devices/add", method="post")
+            .row
+                .col.pad
+                    label Device Name
+                    input(type="text" name="name")
+                .col.pad
+                    label Device Type
+                    input(type="text" name="device_type" value=deviceType)
+            .row
+                .col.pad
+                    label Room
+                    select(name="room_name")
+                        option(value="room_A") Room A
+                        option(value="room_B") Room B
+                        option(value="room_C") Room C
+                .col.pad
+                    label Floor
+                    input(type="number" name="floor" value=1)
+            .row
+                .col.pad
+                    label MQTT Topic
+                    input(type="text" name="mqtt_topic" value="devices/" + deviceId)
+            input(type="submit" value="Submit" style="margin-left: 20px")

@@ -12,4 +12,5 @@ block content
                 .col.right
                     button.outline.configure(id=device._id, style="margin-right: 10px") Configure device
             hr
-    button#add_device(href='/devices/add') Add a device
+    button#discover_device.outline(href='/devices/discovery' style='margin-right: 10px') Scan for devices
+    button#add_device(href='/devices/add') Manually add a device
