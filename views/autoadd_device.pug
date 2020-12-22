@@ -24,5 +24,7 @@ block content
             .row
                 .col.pad
                     label MQTT Topic
-                    input(type="text" name="mqtt_topic" value="devices/" + deviceId)
-            input(type="submit" value="Submit" style="margin-left: 20px")
+                    input(type="text" name="mqtt_topic" id="mqtt_topic" value="devices/" + deviceId)
+            input(type="submit" value="Submit" style="margin-left: 20px" id="submit")
+    script(src="/js/socket.io.min.js")
+    script(src="/js/autoadd.js")

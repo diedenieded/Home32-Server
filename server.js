@@ -66,6 +66,9 @@ io.on('connection', (socket) => {
             }
         }, 1000);
     });
+    socket.on('confirm_device_pairing', (data) => {
+        mqttClient.publish(data.toString(), 'confirm');
+    });
 });
 
 mqttClient.on('message', (topic, message, packet) => {

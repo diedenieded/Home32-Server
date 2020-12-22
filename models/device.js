@@ -21,7 +21,8 @@ let DeviceSchema = mongoose.Schema({
     },
     mqttTopic: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     }
 });
 
