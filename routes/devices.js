@@ -118,9 +118,18 @@ router.get('/discovery', (req, res) => {
     res.render('device_discovery');
 });
 
-// POST route to get device chosen and redirect to autoadd_deivce with prefilled information
-router.post('/discovery', (req, res) => {
+// // POST route to get device chosen and redirect to autoadd_deivce with prefilled information
+// router.post('/discovery', (req, res) => {
 
+// });
+
+// Get route to display the information page for the selected device
+router.get('/:id', (req, res) => {
+    Device.findById(req.params.id, (err, device) => {
+        res.render('device', {
+            device: device
+        });
+    });
 });
 
 module.exports = router;

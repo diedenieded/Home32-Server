@@ -8,7 +8,7 @@ $(() => {
     });
 
     $('.configure').on('click', (target) => {
-        location.href = '/devices/' + target.currentTarget.id + '/configure/';
+        location.href = '/devices/' + target.currentTarget.id;
     });
 
     $('.delete').on('click', (target) => {

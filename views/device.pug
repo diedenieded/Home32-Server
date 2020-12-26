@@ -2,4 +2,39 @@ extends layout
 
 block content
     h2 Devices
-    
+    .row
+        .col
+            b(style="font-size: 1.5em") Device Info
+            br
+            br
+            b Device Name: 
+            != device.name
+            br
+            b Device Type: 
+            != device.deviceType
+            br
+            b Room: 
+            != device.roomName
+            br
+            b Floor: 
+            != device.floor
+            br
+            b MQTT Topic: 
+            != device.mqttTopic
+            br
+            button.outline#configure Edit
+        .col
+            b(style="font-size: 1.5em") Controls
+            br
+            br
+            b LED Brightness
+            br
+            p#currentBrightness 
+            input#ledBrightness(type="range", min=0, max=254, value=30)
+    script.
+        let mqttTopic = "#{device.mqttTopic}";
+    script(src="/js/socket.io.min.js")
+    script(src="/js/device.js")
+
+            
+            

@@ -43,6 +43,8 @@ var deviceCodes = new Array(); // Codes that are randomly generated ONCE by the 
 
 io.on('connection', (socket) => {
     console.log('[SocketIO] Client has connected');
+
+    // Device Discovery and Pairing
     socket.on('startDiscovery', () => {
         deviceCodes = new Array();
         deviceCodes = [];
@@ -68,6 +70,14 @@ io.on('connection', (socket) => {
     });
     socket.on('confirm_device_pairing', (data) => {
         mqttClient.publish(data.toString(), 'confirm');
+    });
+
+
+    // Setting ledBrightness of supported device control after pairing
+    socket.on('setLedBrightness', (message) => {
+        console.log('[home32] Setting brightness of ' + message.mqttTopic + ' to ' + message.brightness);
+        // TODO send message to mqtt about brightness
+        mqttClient.publish(message.mqttTopic + '/led', message.brightness);
     });
 });
 

@@ -10,7 +10,7 @@ block content
                     br
                     != 'Inside ' + device.roomName + ' on floor ' + device.floor
                 .col.right
-                    button.outline.configure(id=device._id, style="margin-right: 10px") Configure device
+                    button.outline.configure(id=device._id, style="margin-right: 10px") Select device
             hr
     button#discover_device.outline(href='/devices/discovery' style='margin-right: 10px') Scan for devices
     button#add_device(href='/devices/add') Manually add a device
